@@ -9,16 +9,16 @@ class Person:
 
 def create_person_list(people: list) -> list:
 
-    persons_list = [Person(name=person_data["name"],
-                           age=person_data["age"])
-                    for person_data in people]
+    persons_list = [Person(name=person_dict["name"],
+                           age=person_dict["age"])
+                    for person_dict in people]
 
-    for persons, obj in zip(people, persons_list):
-        wife_name = persons.get("wife")
-        husband_name = persons.get("husband")
+    for person_data, person_instance in zip(people, persons_list):
+        wife_name = person_data.get("wife")
+        husband_name = person_data.get("husband")
         if wife_name is not None:
-            obj.wife = Person.people[wife_name]
+            person_instance.wife = Person.people[wife_name]
         if husband_name is not None:
-            obj.husband = Person.people[husband_name]
+            person_instance.husband = Person.people[husband_name]
 
     return persons_list
