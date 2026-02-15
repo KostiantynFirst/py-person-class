@@ -8,9 +8,11 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    persons_list = []
-    for ind in people:
-        persons_list.append(Person(name=ind["name"], age=ind["age"]))
+
+    persons_list = [Person(name=person_data["name"],
+                           age=person_data["age"])
+                    for person_data in people]
+
     for persons, obj in zip(people, persons_list):
         wife_name = persons.get("wife")
         husband_name = persons.get("husband")
